@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load sorl_thumbnail %}
+
+{% block title %} Homepage {%endblock%}
+
+{% block body %}
+
+<hr>
+        {% for post in posts %}
+        <a href="{% url 'feed:detail' post.id %}" style='display: inline-block;'>
+            {{ post.text }} <br>
+            {% thumbnail post.image "100x100" crop="center" as im %}
+              <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+            {% endthumbnail %}
+          </a>
+            <hr>
+
+        {% endfor %}
+{% endblock %}
